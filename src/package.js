@@ -3,7 +3,7 @@ require("../d3.tsv");
 
 require("util").puts(JSON.stringify({
   "name": "d3.tsv",
-  "version": "0.0.1",
+  "version": d3.tsv.version,
   "description": "Quick hack to get tsv parsing into d3",
   "keywords": ["dom", "w3c", "visualization", "svg", "animation", "canvas"],
   "homepage": "http://vlandham.github.com/d3.tsv/",

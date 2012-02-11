@@ -3,6 +3,8 @@
     callback(text && d3.tsv.parse(text, "\t"));
   });
 };
+
+d3.tsv.version = "0.0.2"
 d3.tsv.parse = function(text, separator) {
   var header;
   return separator && d3.tsv.parseRows(text, separator, function(row, i) {

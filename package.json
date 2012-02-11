@@ -1,6 +1,6 @@
 {
   "name": "d3.tsv",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Quick hack to get tsv parsing into d3",
   "keywords": [
     "dom",
