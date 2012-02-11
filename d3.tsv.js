@@ -78,18 +78,16 @@ d3.tsv.parseRows = function(text, separator, f) {
   return rows;
 };
 d3.tsv.format = function(rows) {
-  return rows.map(d3_tsv_formatRow).join("\n");
+  return rows.map(function (row) {
+    return d3_formatRow(row, "\t");
+  }).join("\n");
 };
 
-d3.tsv.separator = function() {
-  return "\t";
+function d3_formatRow(row, separator) {
+  return row.map(d3_formatValue).join(separator);
 }
 
-function d3_tsv_formatRow(row) {
-  return row.map(d3_tsv_formatValue).join(d3.tsv.separator());
-}
-
-function d3_tsv_formatValue(text) {
+function d3_formatValue(text) {
   return /[",\n]/.test(text)
       ? "\"" + text.replace(/\"/g, "\"\"") + "\""
       : text;
