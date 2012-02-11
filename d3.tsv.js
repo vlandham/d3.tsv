@@ -1,3 +1,8 @@
+(function(){d3.tsv = function(url, callback) {
+  d3.text(url, "text/tab-separated-values", function(text) {
+    callback(text && d3.tsv.parse(text, "\t"));
+  });
+};
 d3.tsv.parse = function(text, separator) {
   var header;
   return separator && d3.tsv.parseRows(text, separator, function(row, i) {
@@ -72,3 +77,21 @@ d3.tsv.parseRows = function(text, separator, f) {
 
   return rows;
 };
+d3.tsv.format = function(rows) {
+  return rows.map(d3_tsv_formatRow).join("\n");
+};
+
+d3.tsv.separator = function() {
+  return "\t";
+}
+
+function d3_tsv_formatRow(row) {
+  return row.map(d3_tsv_formatValue).join(d3.tsv.separator());
+}
+
+function d3_tsv_formatValue(text) {
+  return /[",\n]/.test(text)
+      ? "\"" + text.replace(/\"/g, "\"\"") + "\""
+      : text;
+}
+})();
