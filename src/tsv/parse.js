@@ -1,6 +1,6 @@
-d3.csv.parse = function(text) {
+d3.csv.parse = function(text, separator) {
   var header;
-  return d3.csv.parseRows(text, function(row, i) {
+  return d3.csv.parseRows(text, separator, function(row, i) {
     if (i) {
       var o = {}, j = -1, m = header.length;
       while (++j < m) o[header[j]] = row[j];
@@ -12,11 +12,12 @@ d3.csv.parse = function(text) {
   });
 };
 
-d3.csv.parseRows = function(text, f) {
+d3.csv.parseRows = function(text, separator, f) {
   var EOL = {}, // sentinel value for end-of-line
       EOF = {}, // sentinel value for end-of-file
       rows = [], // output rows
-      re = /\r\n|[,\r\n]/g, // field separator regex
+      re = new RegExp("\r\n|[" + separator + "\r\n]", "g"), // field separator regex
+      separator_code = separator.charCodeAt(0), // code to match separator with
       n = 0, // the current line number
       t, // the current token
       eol; // is the current token followed by EOL?
@@ -52,7 +53,7 @@ d3.csv.parseRows = function(text, f) {
     // common case
     var m = re.exec(text);
     if (m) {
-      eol = m[0].charCodeAt(0) !== 44;
+      eol = m[0].charCodeAt(0) !== separator_code;
       return text.substring(j, m.index);
     }
     re.lastIndex = text.length;
