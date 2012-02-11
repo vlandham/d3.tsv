@@ -4,7 +4,7 @@ navigator = window.navigator;
 CSSStyleDeclaration = window.CSSStyleDeclaration;
 
 require("../lib/sizzle/sizzle");
-require("../lib/d3/d3.js");
+require("../node_modules/d3/d3.js");
 Sizzle = window.Sizzle;
 
 process.env.TZ = "America/Los_Angeles";

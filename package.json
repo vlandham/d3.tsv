@@ -1,7 +1,7 @@
 {
   "name": "d3.tsv",
   "version": "0.0.1",
-  "description": "quick hack to get tsv parsing in d3"
+  "description": "Quick hack to get tsv parsing into d3",
   "keywords": [
     "dom",
     "w3c",
@@ -10,7 +10,7 @@
     "animation",
     "canvas"
   ],
-  "homepage": "http://mbostock.github.com/d3/",
+  "homepage": "http://vlandham.github.com/d3.tsv/",
   "author": {
     "name": "Jim Vallandingham",
     "url": "http://vallandingham.me"
