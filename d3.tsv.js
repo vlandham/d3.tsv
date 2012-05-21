@@ -1,5 +1,7 @@
 (function(){d3.tsv = function(url, callback) {
   d3.text(url, "text/tab-separated-values", function(text) {
+    // strip out #-style comments
+    text = text.split("\n").filter(function(x) { return !x.match(/^#/); }).join("\n");
     callback(text && d3.tsv.parse(text, "\t"));
   });
 };
